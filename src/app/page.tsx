@@ -62,18 +62,6 @@ const Home: React.FC = () => {
       reader.readAsText(file);
     }
   };
-
-  const handleLinkPaste = async (e: ChangeEvent<HTMLInputElement>) => {
-    const link = e.target.value;
-    try {
-      const response = await fetch(link);
-      const data = await response.text();
-      setSourceText(data);
-    } catch (error) {
-      console.error("Error fetching link content:", error);
-    }
-  };
-
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(translatedText);
     setCopied(true);
@@ -165,7 +153,6 @@ const Home: React.FC = () => {
                   className="cursor-pointer text-orange-400 hover:text-orange-500"
                 />
                 <FileUpload handleFileUpload={handleFileUpload} />
-                {/* <LinkPaste handleLinkPaste={handleLinkPaste} /> */}
               </div>
               <span className="text-xs sm:text-sm text-gray-500">
                 {sourceText.length} / 2000
